@@ -1,4 +1,4 @@
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, ID, Query } from "appwrite";
 
 const PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
@@ -24,7 +24,7 @@ export const updateSearchCount = async (searchTerm, movie) => {
             await database.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), {
                 searchTerm,
                 count: 1,
-                movie_id: movie_id,
+                movie_id: movie.id,
                 poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
 
             })
@@ -40,6 +40,8 @@ export const getTrendingMovies = async () => {
             Query.limit(5),
             Query.orderDesc("count")
         ])
+
+        console.log(result);
 
         return result.documents;
     } catch (error) {

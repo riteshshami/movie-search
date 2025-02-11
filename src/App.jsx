@@ -16,7 +16,7 @@ const API_OPTIONS = {
 }
 
 function App() {
-    const [searchTerm, setSetSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [movieList, setMovieList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +58,6 @@ function App() {
     const loadTrendingMovies = async () => {
         try {
             const movies = await getTrendingMovies();
-
             setTrendingMovies(movies);
         } catch (error) {
             console.error(`Error fetching trending movies: ${error}`);
@@ -80,7 +79,7 @@ function App() {
                 <header>
                     <img src='./hero-img.png' alt='Hero Banner' />
                     <h1>Find <span className='text-gradient'>Movies</span> You'll Enjoy Without the Hassle</h1>
-                    <Search searchTerm={searchTerm} setSetSearchTerm={setSetSearchTerm} />
+                    <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 </header>
 
                 {
@@ -101,7 +100,7 @@ function App() {
                     )
                 }
 
-                <section className='all-movies'>
+                <section className='all-movies mt-4'>
                     <h2 className=''>All Movies</h2>
                     {isLoading ? (
                         <p className='text-white'>Loading...</p>

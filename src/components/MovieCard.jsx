@@ -10,10 +10,10 @@ const MovieCard = ({ movie: { title, vote_average, poster_path, release_date, or
                 <h3>{title}</h3>
                 <div className='content'>
                     <div className='rating'>
-                        <img src='star.svg' alt='Star Icon' />
-                        <p>{vote_average ? vote_average : 'N/A'}</p>
+                        <img src='Rating.svg' alt='Star Icon' />
+                        <p>{typeof vote_average === 'number' ? vote_average.toFixed(2) : 'N/A'}</p>
                     </div>
-                    
+
                     <span>•</span>
                     <p className='lang'>{original_language}</p>
 
